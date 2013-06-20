@@ -1,0 +1,1 @@
+void parserFile(char *fileName);
