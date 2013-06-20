@@ -1,18 +1,17 @@
-###### Species Simulates
+#### Species Simulates
 Task: create an application that imports the provided YAML config file (which contains Control, Species and Habitat parameters) and then simulates the passage of time for each species in each habitat.
 At the end of each run, provide the following data:
-	Species:
-		Habitat:
-			a) Average Population: x
-			b) Max Population: x
-			c) Mortality Rate: x%  #overall death percentage
-			d) Causes of Death:
-				x% starvation
-				x% age
-				x% cold_weather
-				x% hot_weather
+###### Habitat:
+1. Average Population: x
+2. Max Population: x
+3. Mortality Rate: x%  #overall death percentage
+4.  Causes of Death:
+  * x% starvation
+  * x% age
+  * x% cold_weather
+  * x% hot_weather
 		
-Rules/Notes:
+###### Rules/Notes:
 	Passage of Time:
 		- The passage of time should be in months.  Animals only eat/drink/mate/die at 1 month intervals & habitats only refresh their food/water/temperature at 1 month intervals.
 		- The Years value in the config should control how many years the simulation should run.
