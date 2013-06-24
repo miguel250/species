@@ -1,6 +1,9 @@
+#include "parser.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include "util.h"
 
 void parserFile(char *fileName)
 {
@@ -9,8 +12,8 @@ void parserFile(char *fileName)
 
     while (fgets(line, sizeof(line), file)) {
         int i, len;
-        char configName[250];
-        char configValue[250];
+        char configName[250] = {0};
+        char configValue[250] = {0};
         bool foundName = false;
         
         configValue[0] = '\0';
@@ -43,7 +46,7 @@ void parserFile(char *fileName)
             }
         }
 
-        if(configValue[0] == '\0'){
+        if(configValue[0] != '\0'){
             printf("Key: %s Value: %s \n", configName, configValue);
 
         }
