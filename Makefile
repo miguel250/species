@@ -20,7 +20,11 @@ compile: $(OBJECTS)
 	$(CC) $(OBJECTS)  $(LIBS) -o $(TARGET)/specie
 
 clean:
+	-rm src/*.o
 	-rm -fr $(TARGET)
+
+test: default
+	-valgrind   --leak-check=full --leak-check=yes --track-origins=yes  $(TARGET)/specie
 
 run:
 	./$(TARGET)/specie
