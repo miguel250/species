@@ -7,7 +7,7 @@
  * Hash Table
  * Alloc memory for dictionary
  */
-static Dict init_dict(int size){
+static Dict initDict(int size){
     Dict dictionary = malloc(size * sizeof(Dict));
     int i;
 
@@ -30,8 +30,8 @@ static Dict init_dict(int size){
 /*
  * Initial dictionary with default allocated memory
  */
-Dict create_dict(void){
-    return init_dict(INITIAL_SIZE);
+Dict createDict(void){
+    return initDict(INITIAL_SIZE);
 }
 
 
@@ -39,14 +39,14 @@ Dict create_dict(void){
  * Increase dictionary size if running out of space
  */
 static void grow(Dict self){
-    int i, new_size;
+    int i, newSize;
     Dict dictionary;
     struct dict swap;
     struct element *el;
 
-    new_size = self->size * GROWTH_FACTOR;
+    newSize = self->size * GROWTH_FACTOR;
 
-    dictionary = init_dict(new_size);
+    dictionary = initDict(newSize);
 
     for (i = 0; i < self->size; ++i)
     {
@@ -64,7 +64,7 @@ static void grow(Dict self){
  * Hashing algorithm 
  * http://www.cse.yorku.ca/~oz/hash.html
  */
-static unsigned long hash_function(char* str) {
+static unsigned long hashFunction(char* str) {
     unsigned long hash = 5381;
     int c;
     while (c = *str++){
@@ -82,7 +82,7 @@ void add(Dict self, char *key, ElementValue value){
     el->key = key;
     el->data = value;
 
-    hash = hash_function(key) % self->size;
+    hash = hashFunction(key) % self->size;
     el->next = self->table[hash];
     self->table[hash] = el;
     self->num_elements++;
@@ -98,8 +98,7 @@ void add(Dict self, char *key, ElementValue value){
 ElementValue get(Dict self, char *key){
     unsigned long hash;
     struct element *el;
-    hash = hash_function(key) % self->size;
-
+    hash = hashFunction(key) % self->size;
 
     for (el = self->table[hash]; el != 0; el = el->next)
     {
@@ -117,7 +116,7 @@ void delete(Dict self, char *key){
     unsigned long hash;
     struct element *el;
     struct element **prev;
-    hash = hash_function(key) % self->size;
+    hash = hashFunction(key) % self->size;
 
 
     for (prev = &(self->table[hash]); prev != 0; prev = &((*prev)->next))

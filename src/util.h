@@ -36,10 +36,10 @@ struct element {
     struct elementValue *data;
 };
 
-static Dict init_dict(int size);
+static Dict initDict(int size);
 static void grow(Dict self);
 static unsigned long hash_function(char *s);
-Dict create_dict(void);
+Dict createDict(void);
 void add(Dict self, char *key, ElementValue value);
 void delete(Dict self, char *key);
 void destroy(Dict self);
